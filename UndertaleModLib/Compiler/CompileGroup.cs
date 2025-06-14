@@ -264,7 +264,7 @@ public sealed class CompileGroup
             if (newNameNoNumbers[i] == '%')
             {
                 // Special control character: read any amount of digits from original name
-                while (originalPos < originalName.Length && char.IsAsciiDigit(originalName[originalPos]))
+                while (originalPos < originalName.Length && originalName[originalPos] >= '0' && originalName[originalPos] <= '9')
                 {
                     originalPos++;
                 }
@@ -273,7 +273,7 @@ public sealed class CompileGroup
             if (newNameNoNumbers[i] == '#')
             {
                 // Special control character: read any amount of hex digits from original name
-                while (originalPos < originalName.Length && char.IsAsciiHexDigitUpper(originalName[originalPos]))
+                while (originalPos < originalName.Length && ((originalName[originalPos] >= '0' && originalName[originalPos] <= '9') || (originalName[originalPos] >= 'A' && originalName[originalPos] <= 'F')))
                 {
                     originalPos++;
                 }
@@ -316,7 +316,7 @@ public sealed class CompileGroup
             if (newShortNameNoNumbers[i] == '%')
             {
                 // Special control character: read any amount of digits from original name
-                while (originalPos < originalName.Length && char.IsAsciiDigit(originalName[originalPos]))
+                while (originalPos < originalName.Length && originalName[originalPos] >= '0' && originalName[originalPos] <= '9')
                 {
                     originalPos++;
                 }
@@ -325,7 +325,7 @@ public sealed class CompileGroup
             if (newShortNameNoNumbers[i] == '#')
             {
                 // Special control character: read any amount of hex digits from original name
-                while (originalPos < originalName.Length && char.IsAsciiHexDigitUpper(originalName[originalPos]))
+                while (originalPos < originalName.Length && ((originalName[originalPos] >= '0' && originalName[originalPos] <= '9') || (originalName[originalPos] >= 'A' && originalName[originalPos] <= 'F')))
                 {
                     originalPos++;
                 }
