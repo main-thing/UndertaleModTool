@@ -211,8 +211,8 @@ namespace UndertaleModLib.Util
             IPixelCollection<byte> pixels = image.GetPixels();
 
             // Get black/white colors to use for drawing
-            ReadOnlySpan byte[] black = MagickColors.Black.ToByteArray();
-            ReadOnlySpan byte[] white = MagickColors.White.ToByteArray();
+            byte[] black = MagickColors.Black.ToByteArray();
+            byte[] white = MagickColors.White.ToByteArray();
 
             // Draw white pixels if a given bit is set; black pixels otherwise
             byte[] maskData = mask.Data;
