@@ -223,7 +223,7 @@ public sealed class CodeImportGroup
 
             // Extract object name, event type, and event subtype
             ReadOnlySpan<char> objectName = codeEntryName.AsSpan(objectPrefix.Length..secondLastUnderscore);
-            EventType eventType = codeEntryName.AsSpan(secondLastUnderscore + 1..lastUnderscore) switch
+            EventType eventType = codeEntryName.AsSpan((secondLastUnderscore + 1)..lastUnderscore) switch
             {
                 "Create" => EventType.Create,
                 "Destroy" => EventType.Destroy,
