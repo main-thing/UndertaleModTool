@@ -337,7 +337,7 @@ public sealed class CodeImportGroup
     public void QueueFindReplace(UndertaleCode codeToModify, string search, string replacement, bool caseSensitive = true)
     {
         ArgumentNullException.ThrowIfNull(codeToModify);
-        ArgumentException.ThrowIfNullOrEmpty(search);
+        ArgumentException.ThrowIfNullOrWhiteSpace(search);
         ArgumentNullException.ThrowIfNull(replacement);
 
         _queuedOperations.Add(new CodeFindReplaceOperation(codeToModify, search.ReplaceLineEndings("\n"), replacement, false, caseSensitive, false));
@@ -370,7 +370,7 @@ public sealed class CodeImportGroup
     public void QueueRegexFindReplace(UndertaleCode codeToModify, string search, string replacement, bool caseSensitive = true)
     {
         ArgumentNullException.ThrowIfNull(codeToModify);
-        ArgumentException.ThrowIfNullOrEmpty(search);
+        ArgumentException.ThrowIfNullOrWhiteSpace(search);
         ArgumentNullException.ThrowIfNull(replacement);
 
         _queuedOperations.Add(new CodeFindReplaceOperation(codeToModify, search, replacement, true, caseSensitive, false));
@@ -383,7 +383,7 @@ public sealed class CodeImportGroup
     /// <param name="gmlCode">GML source code to compile as replacement code.</param>
     public void QueueReplace(string codeEntryName, string gmlCode)
     {
-        ArgumentException.ThrowIfNullOrEmpty(codeEntryName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
         ArgumentNullException.ThrowIfNull(gmlCode);
 
         QueueReplace(FindOrCreateCodeEntry(codeEntryName), gmlCode);
@@ -400,7 +400,7 @@ public sealed class CodeImportGroup
     /// <param name="gmlCode">GML source code to append to a decompiled string of the original code.</param>
     public void QueueAppend(string codeEntryName, string gmlCode)
     {
-        ArgumentException.ThrowIfNullOrEmpty(codeEntryName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
         ArgumentNullException.ThrowIfNull(gmlCode);
 
         QueueAppend(FindOrCreateCodeEntry(codeEntryName), gmlCode);
@@ -417,7 +417,7 @@ public sealed class CodeImportGroup
     /// <param name="gmlCode">GML source code to prepend to a decompiled string of the original code.</param>
     public void QueuePrepend(string codeEntryName, string gmlCode)
     {
-        ArgumentException.ThrowIfNullOrEmpty(codeEntryName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
         ArgumentNullException.ThrowIfNull(gmlCode);
 
         QueuePrepend(FindOrCreateCodeEntry(codeEntryName), gmlCode);
@@ -432,8 +432,8 @@ public sealed class CodeImportGroup
     /// <param name="caseSensitive">Whether the search should be case sensitive or not.</param>
     public void QueueFindReplace(string codeEntryName, string search, string replacement, bool caseSensitive = true)
     {
-        ArgumentException.ThrowIfNullOrEmpty(codeEntryName);
-        ArgumentException.ThrowIfNullOrEmpty(search);
+        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(search);
         ArgumentNullException.ThrowIfNull(replacement);
 
         QueueFindReplace(FindOrCreateCodeEntry(codeEntryName), search.ReplaceLineEndings("\n"), replacement, caseSensitive);
@@ -449,7 +449,7 @@ public sealed class CodeImportGroup
     /// <param name="caseSensitive">Whether the search should be case sensitive or not.</param>
     public void QueueTrimmedLinesFindReplace(string codeEntryName, string search, string replacement, bool caseSensitive = true)
     {
-        ArgumentException.ThrowIfNullOrEmpty(codeEntryName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
         ArgumentException.ThrowIfNullOrWhiteSpace(search);
         ArgumentNullException.ThrowIfNull(replacement);
 
@@ -465,8 +465,8 @@ public sealed class CodeImportGroup
     /// <param name="caseSensitive">Whether the search should be case sensitive or not.</param>
     public void QueueRegexFindReplace(string codeEntryName, string search, string replacement, bool caseSensitive = true)
     {
-        ArgumentException.ThrowIfNullOrEmpty(codeEntryName);
-        ArgumentException.ThrowIfNullOrEmpty(search);
+        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(search);
         ArgumentNullException.ThrowIfNull(replacement);
 
         QueueRegexFindReplace(FindOrCreateCodeEntry(codeEntryName), search, replacement, caseSensitive);
