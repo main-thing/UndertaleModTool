@@ -337,7 +337,10 @@ public sealed class CodeImportGroup
     public void QueueFindReplace(UndertaleCode codeToModify, string search, string replacement, bool caseSensitive = true)
     {
         ArgumentNullException.ThrowIfNull(codeToModify);
-        ArgumentException.ThrowIfNullOrWhiteSpace(search);
+        if (string.IsNullOrEmpty(search))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(search));
+        }
         ArgumentNullException.ThrowIfNull(replacement);
 
         _queuedOperations.Add(new CodeFindReplaceOperation(codeToModify, search.ReplaceLineEndings("\n"), replacement, false, caseSensitive, false));
@@ -354,7 +357,10 @@ public sealed class CodeImportGroup
     public void QueueTrimmedLinesFindReplace(UndertaleCode codeToModify, string search, string replacement, bool caseSensitive = true)
     {
         ArgumentNullException.ThrowIfNull(codeToModify);
-        ArgumentException.ThrowIfNullOrWhiteSpace(search);
+        if (string.IsNullOrWhiteSpace(search))
+        {
+           throw new ArgumentException("Value cannot be null or whitespace.", nameof(search));
+        }
         ArgumentNullException.ThrowIfNull(replacement);
 
         _queuedOperations.Add(new CodeFindReplaceOperation(codeToModify, search, replacement, false, caseSensitive, true));
@@ -370,7 +376,10 @@ public sealed class CodeImportGroup
     public void QueueRegexFindReplace(UndertaleCode codeToModify, string search, string replacement, bool caseSensitive = true)
     {
         ArgumentNullException.ThrowIfNull(codeToModify);
-        ArgumentException.ThrowIfNullOrWhiteSpace(search);
+        if (string.IsNullOrEmpty(search))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(search));
+        }
         ArgumentNullException.ThrowIfNull(replacement);
 
         _queuedOperations.Add(new CodeFindReplaceOperation(codeToModify, search, replacement, true, caseSensitive, false));
@@ -383,7 +392,10 @@ public sealed class CodeImportGroup
     /// <param name="gmlCode">GML source code to compile as replacement code.</param>
     public void QueueReplace(string codeEntryName, string gmlCode)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
+        if (string.IsNullOrEmpty(codeEntryName))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(codeEntryName));
+        }
         ArgumentNullException.ThrowIfNull(gmlCode);
 
         QueueReplace(FindOrCreateCodeEntry(codeEntryName), gmlCode);
@@ -400,7 +412,10 @@ public sealed class CodeImportGroup
     /// <param name="gmlCode">GML source code to append to a decompiled string of the original code.</param>
     public void QueueAppend(string codeEntryName, string gmlCode)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
+        if (string.IsNullOrEmpty(codeEntryName))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(codeEntryName));
+        }
         ArgumentNullException.ThrowIfNull(gmlCode);
 
         QueueAppend(FindOrCreateCodeEntry(codeEntryName), gmlCode);
@@ -417,7 +432,10 @@ public sealed class CodeImportGroup
     /// <param name="gmlCode">GML source code to prepend to a decompiled string of the original code.</param>
     public void QueuePrepend(string codeEntryName, string gmlCode)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
+        if (string.IsNullOrEmpty(codeEntryName))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(codeEntryName));
+        }
         ArgumentNullException.ThrowIfNull(gmlCode);
 
         QueuePrepend(FindOrCreateCodeEntry(codeEntryName), gmlCode);
@@ -432,8 +450,14 @@ public sealed class CodeImportGroup
     /// <param name="caseSensitive">Whether the search should be case sensitive or not.</param>
     public void QueueFindReplace(string codeEntryName, string search, string replacement, bool caseSensitive = true)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(search);
+        if (string.IsNullOrEmpty(codeEntryName))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(codeEntryName));
+        }
+        if (string.IsNullOrEmpty(search))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(search));
+        }
         ArgumentNullException.ThrowIfNull(replacement);
 
         QueueFindReplace(FindOrCreateCodeEntry(codeEntryName), search.ReplaceLineEndings("\n"), replacement, caseSensitive);
@@ -449,8 +473,14 @@ public sealed class CodeImportGroup
     /// <param name="caseSensitive">Whether the search should be case sensitive or not.</param>
     public void QueueTrimmedLinesFindReplace(string codeEntryName, string search, string replacement, bool caseSensitive = true)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(search);
+        if (string.IsNullOrEmpty(codeEntryName))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(codeEntryName));
+        }
+        if (string.IsNullOrWhiteSpace(search))
+        {
+           throw new ArgumentException("Value cannot be null or whitespace.", nameof(search));
+        }
         ArgumentNullException.ThrowIfNull(replacement);
 
         QueueTrimmedLinesFindReplace(FindOrCreateCodeEntry(codeEntryName), search, replacement, caseSensitive);
@@ -465,8 +495,14 @@ public sealed class CodeImportGroup
     /// <param name="caseSensitive">Whether the search should be case sensitive or not.</param>
     public void QueueRegexFindReplace(string codeEntryName, string search, string replacement, bool caseSensitive = true)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(codeEntryName);
-        ArgumentException.ThrowIfNullOrWhiteSpace(search);
+        if (string.IsNullOrEmpty(codeEntryName))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(codeEntryName));
+        }
+        if (string.IsNullOrEmpty(search))
+        {
+           throw new ArgumentException("Value cannot be null or empty.", nameof(search));
+        }
         ArgumentNullException.ThrowIfNull(replacement);
 
         QueueRegexFindReplace(FindOrCreateCodeEntry(codeEntryName), search, replacement, caseSensitive);
