@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <RollForward>LatestMajor</RollForward>
         <OutputType>WinExe</OutputType>
         <!-- TODO: this should properly get migrated and get rid of -->
