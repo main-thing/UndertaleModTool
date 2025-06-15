@@ -29,7 +29,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -37,7 +37,7 @@ jobs:
         dotnet build UndertaleModTool --no-restore
         dotnet build UndertaleModToolUpdater --no-restore
     - name: Publish ${{ matrix.os }} GUI
-      run: | # FIXME: debug constant isn't being applied here, which disables updater, etc., so need to fix that or possibly add a new constant
+      run: |
         dotnet publish UndertaleModTool -c ${{ matrix.configuration }} -r win-x64 -p:DefineConstants="SHOW_COMMIT_HASH" --self-contained ${{ matrix.bundled }} -p:PublishSingleFile=${{ matrix.singlefile }} --output ${{ matrix.os }}
         dotnet publish UndertaleModToolUpdater -c ${{ matrix.configuration }} -r win-x64 --self-contained ${{ matrix.bundled }} -p:PublishSingleFile=false --output ${{ matrix.os }}/Updater
     - name: Copy external files
@@ -79,7 +79,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore UndertaleModCli
     - name: Build
@@ -118,7 +118,7 @@ jobs:
       with:
         tag_name: bleeding-edge
         name: Bleeding Edge
-        prerelease: true
+        prerelease: false
         fail_on_unmatched_files: true
         files: |
           */*
