@@ -65,12 +65,12 @@ public class GMImage
     /// <summary>
     /// QOI file format magic.
     /// </summary>
-    public static ReadOnlySpan<byte> MagicQoi => "fioq"u8;
+    public static ReadOnlySpan<byte> MagicQoi => new byte[] { 102, 105, 111, 113 };
 
     /// <summary>
     /// BZip2 + QOI file format magic.
     /// </summary>
-    public static ReadOnlySpan<byte> MagicBz2Qoi => "2zoq"u8;
+    public static ReadOnlySpan<byte> MagicBz2Qoi => new byte[] { 50, 122, 111, 113 };
 
     /// <summary>
     /// Magic value found near the end of a BZip2 stream (square root of pi). 
